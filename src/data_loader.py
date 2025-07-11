@@ -1,16 +1,34 @@
 import pandas as pd
 
-def load_data(train_path = 'data/train.csv', test_path = 'data/test.csv'):
+from src.features import compute_blend_weighted_properties
+
+def load_data(mode = 'both', train_path = 'data/train.csv', test_path = 'data/test.csv'):
     train_df = pd.read_csv(train_path)
     test_df = pd.read_csv(test_path)
     
-    fraction_cols = [col for col in train_df.columns if 'fraction' in col] 
+    fraction_cols = [col for col in train_df.columns if 'fraction' in col]
     property_cols = [col for col in train_df.columns if 'Property' in col and 'Blend' not in col]
     feature_cols = fraction_cols + property_cols
     target_cols = [col for col in train_df.columns if 'BlendProperty' in col]
     
-    X_train = train_df[feature_cols]
+    X_train_raw = train_df[feature_cols]
+    X_train_weighted = compute_blend_weighted_properties(train_df)
+    X_test_raw = test_df[feature_cols]
+    X_test_weighted = compute_blend_weighted_properties(test_df)
+
+    if mode == 'raw':
+        X_train = X_train_raw
+        X_test = X_test_raw
+        print("Training with RAW features")
+    elif mode == 'weighted':
+        X_train = pd.concat([X_train_weighted, train_df[property_cols]], axis=1)
+        X_test = pd.concat([X_test_weighted, test_df[property_cols]], axis=1)
+        print("Training with WEIGHTED + property features")
+    else:  # both
+        X_train = pd.concat([X_train_weighted, X_train_raw], axis=1)
+        X_test = pd.concat([X_test_weighted, X_test_raw], axis=1)
+        print("Training with BOTH weighted and raw features")
+
     y_train = train_df[target_cols]
-    X_test = test_df[feature_cols]
     
     return X_train, y_train, X_test, target_cols
