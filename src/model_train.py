@@ -5,22 +5,26 @@ from sklearn.multioutput import MultiOutputRegressor
 from src.features import compute_blend_weighted_properties
 
 def train_model(X_train, y_train):
-    model = MultiOutputRegressor(RandomForestRegressor(n_estimators=20, random_state=42))
+    model = MultiOutputRegressor(RandomForestRegressor(n_estimators=100, random_state=42))
     model.fit(X_train, y_train)
     return model
 
 def evaluate_model(model, X_train, y_train, target_cols):
     y_pred = model.predict(X_train)
-    # mape_scores = []
     print("\nMAPE Scores (lower => better):")
-    # for i in range(y_train.shape[1]):
-    #     mape = mean_absolute_percentage_error(y_train.iloc[:, i], y_pred[:, i])
-    #     mape_scores.append(mape)
-    # return mape_scores
     for i, col in enumerate(target_cols):
         score = mean_absolute_percentage_error(y_train.iloc[:, i], y_pred[:, i])
         print(f"{col}: {score:.4f}")
     return
+
+def evaluate_model_old(model, X_train, y_train):
+    y_pred = model.predict(X_train)
+    mape_scores = []
+    print("\nMAPE Scores (lower => better):")
+    for i in range(y_train.shape[1]):
+        mape = mean_absolute_percentage_error(y_train.iloc[:, i], y_pred[:, i])
+        mape_scores.append(mape)
+    return mape_scores
 
 def run_training(train_df):
     target_cols = [col for col in train_df.columns if 'BlendProperty' in col]
