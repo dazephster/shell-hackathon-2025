@@ -1,8 +1,9 @@
 import pandas as pd
+import matplotlib.pyplot as plt
 
 from src.features import compute_blend_weighted_properties
 
-def load_data(mode = 'both', train_path = 'data/train.csv', test_path = 'data/test.csv'):
+def load_data(mode = 'both', visualize = True, train_path = 'data/train.csv', test_path = 'data/test.csv'):
     train_df = pd.read_csv(train_path)
     test_df = pd.read_csv(test_path)
     
@@ -31,4 +32,29 @@ def load_data(mode = 'both', train_path = 'data/train.csv', test_path = 'data/te
 
     y_train = train_df[target_cols]
     
+    if visualize:
+        # visualize_data(train_df, test_df)
+        # visualize_BP1(X_train,y_train)
+        print('Visualized')
+    
     return X_train, y_train, X_test, target_cols
+
+def visualize_data(train_df, test_df):
+    # Example: Visualize Component1 fraction vs. BlendProperty1
+    # for i in range(1,11):
+    #     plt.scatter(train_df['Component4_fraction'], train_df[f'BlendProperty{i}'])
+    #     plt.xlabel('Component4 Fraction')
+    #     plt.ylabel(f'BlendProperty{i}')
+    #     plt.title(f'Component4 Fraction vs BlendProperty{i}')
+    #     plt.show()
+    return
+    
+def visualize_BP1(X_train, y_train):
+    for weighted_prop_col in [col for col in X_train.columns if 'BlendWeighted_Property' in col]:
+        plt.scatter(X_train[weighted_prop_col], y_train['BlendProperty1'])
+        plt.xlabel(weighted_prop_col)
+        plt.ylabel(f'BlendProperty1')
+        plt.title(f'{weighted_prop_col} vs BlendProperty1')
+        plt.show()
+        
+    return
