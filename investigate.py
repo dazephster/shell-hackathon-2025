@@ -2,7 +2,7 @@ import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
 
-def investigate():
+def investigate_heatmap():
     train_df = pd.read_csv('data/train.csv')
     
     # Get component fraction columns
@@ -21,13 +21,15 @@ def investigate():
         for j in range(5):
             weighted_sum += train_df[fraction_cols[j]] * train_df[curProp_cols[j]]
         
-        # Store result in new column
         blendweight_avg_df[f'BlendWeighted_{prop_str}'] = weighted_sum
     
     # merge new weighted_avgs df with train_df
     combined_df = pd.merge(train_df, blendweight_avg_df, left_index=True, right_index=True)
     
-    return combined_df
+    df = combined_df
+    corr_mx = compute_correlation_matrix(df)
+    plot_correlation_heatmap(corr_mx)
+    return
     
 def compute_correlation_matrix(df):
     target_cols = [f'BlendProperty{i+1}' for i in range(10)]
@@ -73,7 +75,3 @@ def plot_spearman_correlations(y_train):
     sns.heatmap(spearman_corr, annot=True, cmap="coolwarm")
     plt.title("Spearman Correlation Between Blend Properties")
     plt.show()
-
-# df = investigate()
-# corr_mx = compute_correlation_matrix(df)
-# plot_correlation_heatmap(corr_mx)
