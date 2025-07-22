@@ -7,6 +7,9 @@ How to run:
 
 This project predicts 10 blend property values based on component fractions and component property data.
 
+I was new to Data Analysis and Machine Learning before this project.
+My process started with decision trees and random forests. After then I added the blend weighted property average columns. I adjusted to using gradient boosting, and attempted a bunch of other methods like per property training, meta modeling with Ridge Regression, predicting individual BPs, and more.
+
 The best-performing model for me was a CatBoostRegressor wrapped in MultiOutputRegressor. 
 
 Feature engineering includes weighted averages of component properties based on their fractions (compute_blend_weighted_properties in features.py).
