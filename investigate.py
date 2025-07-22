@@ -59,6 +59,21 @@ def plot_correlation_heatmap(corr_mx):
     plt.show()
     return
 
-df = investigate()
-corr_mx = compute_correlation_matrix(df)
-plot_correlation_heatmap(corr_mx)
+def plot_target_correlations(y_train):
+    corr = y_train.corr()
+
+    plt.figure(figsize=(10, 8))
+    sns.heatmap(corr, annot=True, fmt=".2f", cmap="coolwarm")
+    plt.title("Correlation Between Blend Properties")
+    plt.show()
+    return
+
+def plot_spearman_correlations(y_train):
+    spearman_corr = y_train.corr(method='spearman')
+    sns.heatmap(spearman_corr, annot=True, cmap="coolwarm")
+    plt.title("Spearman Correlation Between Blend Properties")
+    plt.show()
+
+# df = investigate()
+# corr_mx = compute_correlation_matrix(df)
+# plot_correlation_heatmap(corr_mx)
