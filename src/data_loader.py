@@ -35,18 +35,19 @@ def load_data(mode = 'both', visualize = False, train_path = 'data/train.csv', t
     if visualize:
         # visualize_data(train_df, test_df)
         # visualize_BP1(X_train,y_train)
+        visualize_BP3_BP7(y_train)
         print('Visualized')
     
     return X_train, y_train, X_test, target_cols
 
 def visualize_data(train_df, test_df):
     # Example: Visualize Component1 fraction vs. BlendProperty1
-    # for i in range(1,11):
-    #     plt.scatter(train_df['Component4_fraction'], train_df[f'BlendProperty{i}'])
-    #     plt.xlabel('Component4 Fraction')
-    #     plt.ylabel(f'BlendProperty{i}')
-    #     plt.title(f'Component4 Fraction vs BlendProperty{i}')
-    #     plt.show()
+    for i in range(1,11):
+        plt.scatter(train_df['Component4_fraction'], train_df[f'BlendProperty{i}'])
+        plt.xlabel('Component4 Fraction')
+        plt.ylabel(f'BlendProperty{i}')
+        plt.title(f'Component4 Fraction vs BlendProperty{i}')
+        plt.show()
     return
     
 def visualize_BP1(X_train, y_train):
@@ -56,5 +57,11 @@ def visualize_BP1(X_train, y_train):
         plt.ylabel(f'BlendProperty1')
         plt.title(f'{weighted_prop_col} vs BlendProperty1')
         plt.show()
-        
     return
+
+def visualize_BP3_BP7(y_train):
+    plt.scatter(y_train['BlendProperty3'], y_train['BlendProperty7'])
+    plt.xlabel(f'BP3')
+    plt.ylabel(f'BP7')
+    plt.title(f'BlendProperty3 vs BlendProperty7')
+    plt.show()
