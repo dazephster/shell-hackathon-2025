@@ -1,4 +1,4 @@
-Shell Hackathon 2025 Project
+Shell Hackathon 2025 Project (https://github.com/dazephster/shell-hackathon-2025/)
 
 How to run:
 1) Install dependencies with pip install -r requirements.txt
