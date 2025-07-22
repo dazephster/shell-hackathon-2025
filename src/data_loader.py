@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 
 from src.features import compute_blend_weighted_properties
 
-def load_data(mode = 'both', visualize = True, train_path = 'data/train.csv', test_path = 'data/test.csv'):
+def load_data(mode = 'both', visualize = False, train_path = 'data/train.csv', test_path = 'data/test.csv'):
     train_df = pd.read_csv(train_path)
     test_df = pd.read_csv(test_path)
     
