@@ -5,6 +5,13 @@ How to run:
 2) Run python main.py
 3) Optional: Add in commented functions or set visualize to true in load_data function
 
+Pearson Correlations
+<img width="992" height="525" alt="BPCorrelations" src="https://github.com/user-attachments/assets/7e22138b-1e7b-4b63-ab7b-660d41f52181" />
+
+Weighted Properties Heatmap
+<img width="1260" height="800" alt="WBPHeatmap" src="https://github.com/user-attachments/assets/2e517b94-527d-496f-9613-2a19011b9ce7" />
+
+
 This project predicts 10 blend property values based on component fractions and component property data.
 
 I was new to Data Analysis and Machine Learning before this project.
