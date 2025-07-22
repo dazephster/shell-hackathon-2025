@@ -3,6 +3,7 @@ Shell Hackathon 2025 Project
 How to run:
 1) Install dependencies with pip install -r requirements.txt
 2) Run python main.py
+3) Optional: Add in commented functions or set visualize to true in load_data function
 
 This project predicts 10 blend property values based on component fractions and component property data.
 
