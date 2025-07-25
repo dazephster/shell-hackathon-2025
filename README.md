@@ -2,8 +2,9 @@ Shell Hackathon 2025 Project (https://github.com/dazephster/shell-hackathon-2025
 
 How to run:
 1) Install dependencies with pip install -r requirements.txt
-2) Run python main.py
-3) Optional: Add in commented functions or set visualize to true in load_data function
+2) Run pip install catboost
+3) Run python main.py
+4) Optional: Add in commented functions or set visualize to true in load_data function
 
 Pearson Correlations
 <img width="992" height="525" alt="BPCorrelations" src="https://github.com/user-attachments/assets/7e22138b-1e7b-4b63-ab7b-660d41f52181" />
